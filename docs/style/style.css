@@ -1,0 +1,1149 @@
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+html {
+  transition: font-size 0.5s;
+}
+
+html,
+body {
+  font-size: 62.5%;
+}
+
+html > body {
+  font-family: "Pretendard-Regular";
+}
+
+/* 라이브러리 */
+/* 스크롤바 전체 영역 */
+.scroll::-webkit-scrollbar {
+  width: 4px;
+  height: 40px;
+}
+
+.scroll::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 40px;
+  border-radius: 5px;
+  border: 4px solid transparent;
+}
+
+/* 공통 미디어 쿼리 */
+/* 화면의 너비가 1800px 이하일 때 */
+@media (1800px >= width) {
+  html {
+    font-size: 58%;
+  }
+}
+
+/* 화면의 너비가 1600px 이하일 때 */
+@media (1600px >= width) {
+  html {
+    font-size: 56%;
+  }
+}
+
+/* 화면의 너비가 1440px 이하일 때 */
+@media (1440px >= width) {
+  html {
+    font-size: 54%;
+  }
+}
+
+/* 화면의 너비가 1600px 이하일 때 */
+@media (1280px >= width) {
+  html {
+    font-size: 45%;
+  }
+}
+
+.scroll-top-btn {
+  width: 6.8rem;
+  height: 6.8rem;
+  border: 1px solid #e9e9e9;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 3rem;
+  font-weight: bold;
+  cursor: pointer;
+  position: fixed;
+  right: 3%;
+  bottom: 3%;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 1s, transform 1s;
+  user-select: none;
+}
+
+.scroll-top-btn.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* top-bar 구현 시작 */
+.top-bar {
+  z-index: 99;
+}
+
+.top-bar__left.active,
+.top-bar__mid.active,
+.top-right__widget .careers.active {
+  opacity: 0.5;
+}
+
+.top-bar__inner {
+  height: 10.5rem;
+  padding: 0 clamp(1.8rem, 4.86vw, 5.4rem);
+}
+
+.logo > img {
+  width: 10.3rem;
+}
+
+.logo > .mo-logo-img {
+  display: none;
+}
+
+/* 1차 메뉴 아이템 텍스트 */
+.top-bar__menu-1 > ul > li {
+  position: relative;
+}
+
+.top-bar__menu-1 > ul > li > a {
+  display: flex;
+  height: 100%;
+  padding: 0 clamp(1rem, 1.5vw, 3rem);
+  font-size: clamp(1.6rem, 3.44vw, 2.4rem);
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-bar__menu-1 > ul ul {
+  position: absolute;
+  width: 100%;
+  height: 25.5rem;
+  text-align: center;
+  padding: 1.8rem 0 5rem;
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.top-bar__menu-1 > ul ul.active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.top-bar__menu-1 > ul ul > li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.3rem;
+}
+
+.top-bar__menu-1 > ul ul > li > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.4rem, 1.7vw, 1.8rem);
+  font-weight: bold;
+  white-space: nowrap;
+  padding: 0.6rem 1.6rem;
+  width: 12rem;
+  border-radius: 1.2rem;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.top-bar__menu-1 > ul ul > li.off > a {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.top-bar__menu-1 > ul ul > li:hover > a {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.top-bar__mid > .depth2-bg {
+  background-color: #fff;
+  height: 28rem;
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  border-radius: 0 0 2.5rem 2.5rem;
+  box-shadow: 1px 2px 6px 0 rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.top-bar__mid > .depth2-bg.active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.top-right__widget .careers > a {
+  display: inline-block;
+  background-color: #eaeaea;
+  border-radius: 5rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.5s ease-in-out;
+  font-weight: bold;
+  font-size: clamp(1.4rem, 1.7vw, 1.8rem);
+}
+
+.top-right__widget li:not(:first-child) img {
+  width: 3.5rem;
+}
+
+.top-right__widget .lang {
+  position: relative;
+}
+
+.top-right__widget .lang .lang-menu {
+  position: absolute;
+  width: 100%;
+  background-color: #fff;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 7rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: none;
+  border-radius: 0 0 0.8rem 0.8rem;
+  display: none;
+}
+
+.top-right__widget .lang:hover .lang-menu {
+  display: block;
+}
+
+.top-right__widget .lang .lang-menu > li.on > a {
+  opacity: 1;
+}
+
+.top-right__widget .lang .lang-menu > li > a {
+  display: block;
+  font-weight: bold;
+  padding: 1.3rem 0;
+  text-align: center;
+  font-size: 1.6rem;
+  opacity: 0.4;
+  transition: opacity 0.5s;
+}
+
+.top-right__widget .lang .lang-menu > li:hover > a {
+  opacity: 1;
+}
+
+/* 모바일 사이드 메뉴 구현 */
+.mobile-side-menu {
+  background-color: #fff;
+  position: absolute;
+  width: 100vw;
+  height: calc(100vh - clamp(5.4rem, 11vw, 10.8rem));
+  transform: translateX(100%);
+  transition: transform 0.5s;
+}
+
+.mobile-side-menu.active {
+  transform: translateX(0);
+}
+
+.mobile-side-menu {
+  background-color: #fff;
+  height: calc(100vh - clamp(5.4rem, 11vw, 10.8rem));
+  padding: clamp(1.5rem, 4.17vw, 3rem) clamp(1.75rem, 4.86vw, 3.5rem)
+    clamp(3rem, 8.33vw, 6rem);
+}
+
+.mobile-side-menu .mo-depth1 {
+  gap: clamp(1rem, 2.78vw, 2rem) 0;
+}
+
+.mobile-side-menu .mo-depth1 > li {
+  border: 1px solid #eaeaea;
+  border-radius: clamp(1.25rem, 3.47vw, 2.5rem);
+}
+
+.mobile-side-menu .mo-depth1 > li:last-child {
+  border: none;
+  background-color: #f5f5f5;
+  border-radius: clamp(3rem, 3.47vw, 4rem);
+}
+
+/* 1차 메뉴 아이템 텍스트 */
+.mobile-side-menu .mo-depth1 > li > :first-child {
+  display: block;
+  font-size: clamp(1.6rem, 4.44vw, 2.2rem);
+  font-weight: bold;
+  padding: clamp(1.75rem, 2.3vw, 3.5rem) clamp(2.25rem, 4.25vw, 4.5rem);
+  position: relative;
+  user-select: none;
+}
+
+.mobile-side-menu .mo-depth1 > li.active > :first-child {
+  color: #3cb4e5;
+}
+
+.mobile-side-menu .mo-depth1 > li > :first-child > span {
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: clamp(2.25rem, 6.25vw, 4.5rem);
+  width: clamp(1.9rem, 5vw, 4rem);
+  height: clamp(1.9rem, 5vw, 4rem);
+}
+
+.mobile-side-menu .mo-depth1 > li > :first-child > .arrow-icon {
+  background: url("https://www.spc.co.kr/img/front/icon/icon_drop.svg")
+    no-repeat center;
+}
+
+.mobile-side-menu .mo-depth1 > li.active > :first-child > .arrow-icon {
+  background-image: url("https://www.spc.co.kr/img/front/icon/icon_up.svg");
+}
+
+.mobile-side-menu .mo-depth1 > li > :last-child > .careers-icon {
+  background: url("https://www.spc.co.kr/img/front/icon/icon_link.svg")
+    no-repeat center;
+  background-size: cover;
+}
+
+/* 2차 메뉴 */
+.mobile-side-menu .mo-depth2 {
+  position: relative;
+  padding: clamp(1.25rem, 3.47vw, 2.5rem) clamp(2.5rem, 6.94vw, 5rem);
+  display: none;
+}
+
+.mobile-side-menu .mo-depth2::before {
+  content: "";
+  position: absolute;
+  width: calc(100% - clamp(4.5rem, 12.5vw, 9rem));
+  height: 1px;
+  background-color: #efefef;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 2차 메뉴 아이템 텍스트 */
+.mobile-side-menu .mo-depth2 > li > a {
+  font-size: 1.85rem;
+  display: block;
+  padding: clamp(1.2rem, 1.25vw, 2.35rem) 0;
+  font-weight: bold;
+}
+
+.mo-depth1__lang {
+  margin-top: clamp(1rem, 2.78vw, 2rem);
+}
+
+.mo-depth1__lang > ul {
+  gap: 3rem;
+}
+
+.mo-depth1__lang > ul > li > a {
+  display: block;
+  font-size: 2.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.mo-depth1__lang > ul > li.active > a {
+  color: #3cb4e5;
+}
+
+.mo-depth1__lang > ul > li:not(:last-child) > a::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -50%;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 0.2rem;
+  height: 1.5rem;
+}
+/* 모바일 사이드 메뉴 끝 */
+/* top-bar 구현 끝 */
+
+/* 화면의 너비가 1025px 이하일 때  */
+/* max-width: 1025px */
+@media (1025px >= width) {
+  .logo > .pc-logo-img {
+    display: none;
+  }
+
+  .logo > .mo-logo-img {
+    display: block;
+  }
+
+  .top-bar__menu-1 {
+    display: none;
+  }
+
+  .top-right__widget li:last-child {
+    display: block;
+  }
+
+  .top-right__widget li:not(:last-child) {
+    display: none;
+  }
+
+  .top-bar .mobile-side-menu {
+    height: calc(100dvh - 5.4rem);
+    overflow-y: auto;
+    padding-bottom: 18rem;
+  }
+}
+/* 탑바 구현 끝 */
+
+/* 섹션 구현 시작 */
+.content-wrap {
+  padding: 0 5.4rem 5rem;
+  overflow-x: hidden;
+}
+
+/* sec-01 구현 시작 */
+.sec-01 {
+  position: relative;
+  transform: translateY(10%);
+  opacity: 0;
+  transition: transform 0.7s, opacity 0.7s;
+  z-index: 10;
+}
+
+.sec-01.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.sec-01 .main-title-wrap {
+  position: absolute;
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+}
+
+.sec-01 .main-title-wrap h1 {
+  font-size: clamp(3.6rem, 10vw, 5.4rem);
+  font-weight: bold;
+}
+
+.sec-01 .main-title-wrap p {
+  font-size: clamp(4.9rem, 13.61vw, 10.6rem);
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.sec-01 .swiper {
+  height: 42.175rem;
+}
+
+.sec-01 .swiper-slide {
+  border-radius: clamp(1.25rem, 3.47vw, 2.5rem);
+  overflow: hidden;
+}
+
+.sec-01 .swiper-slide > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.sec-01__swiper-btn-wrap .swiper-btn {
+  width: 4.5rem;
+  height: 4.5rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  filter: invert(1);
+}
+
+.sec-01__swiper-btn-wrap .swiper-btn:first-child {
+  background-image: url("https://www.spc.co.kr/img/front/icon/icon_prev.svg");
+}
+
+.sec-01__swiper-btn-wrap .swiper-btn:last-child {
+  background-image: url("https://www.spc.co.kr/img/front/icon/icon_next.svg");
+}
+
+.sec-01__swiper-btn-wrap .swiper-btn::after {
+  display: none;
+}
+
+/* sec-01 구현 끝 */
+
+/* sec-02 구현 시작 */
+.sec-02 {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.7s, opacity 0.7s;
+}
+
+.sec-02.active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.sec-02 .grid-wrap {
+  height: 44.175rem;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 0 2rem;
+}
+
+.sec-02 .grid-wrap .grid-item .link-tit {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: clamp(1.25rem, 3.47vw, 2.5rem);
+  overflow: hidden;
+  position: relative;
+}
+
+.sec-02 .grid-wrap .grid-item .link-tit::after {
+  content: "헤리티지";
+  color: #fff;
+  position: absolute;
+  left: 4rem;
+  top: 3rem;
+  font-size: clamp(1.5rem, 4.17vw, 3.4rem);
+  font-weight: bold;
+}
+
+.sec-02 .grid-wrap .grid-item:nth-child(2) .link-tit::after {
+  content: "SPC WAY";
+}
+
+.sec-02 .grid-wrap .grid-item:nth-child(3) .link-tit::after {
+  content: "ESG";
+}
+
+.sec-02 .grid-wrap .grid-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s;
+}
+
+.sec-02 .grid-wrap .grid-item .link-tit:hover > img {
+  transform: scale(1.2);
+}
+/* sec-02 구현 끝 */
+
+/* sec-03, sec-04 공통 디자인 구현 시작 */
+.common-sec .grid-wrap {
+  grid-template-columns: 1fr 1fr;
+  gap: 0 2rem;
+}
+
+.common-sec .grid-wrap .grid-item {
+  height: 100%;
+}
+
+.sec-main-swiper {
+  width: 100%;
+  height: 100%;
+  border-radius: clamp(1.25rem, 3.47vw, 2.5rem);
+}
+
+.sec-main-swiper .swiper-slide {
+  width: 100% !important;
+}
+
+.sec-main-swiper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+div[class*="__pagination"] {
+  position: absolute;
+  bottom: auto !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 10;
+  line-height: 17.5rem;
+}
+
+div[class*="__pagination"] .swiper-pagination-bullet {
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  opacity: 0.4;
+  transition: color 0.5s, opacity 0.5s;
+}
+
+div[class*="__pagination"]
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+div[class*="__pagination"] .swiper-pagination-bullet:hover {
+  opacity: 1;
+  color: white !important;
+}
+
+div[class*="__pagination"] .swiper-pagination-bullet::after {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 15.5rem;
+  font-weight: bold;
+}
+
+/* sec-03, sec-04 공통 탭 컨텐츠 구현 시작 */
+.sec-tab-content {
+  position: relative;
+}
+
+.sec-tab-content .tab-cont {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.sec-tab-content .tab-cont.active {
+  display: block;
+}
+
+.sec-tab-content .tab-cont-wrap {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.sec-tab-content .tab-cont-wrap > div {
+  width: calc(50% - 1rem);
+  height: calc(50% - 1rem);
+  border-radius: clamp(1.25rem, 3.47vw, 2.5rem);
+  overflow: hidden;
+  margin: 0;
+}
+
+.sec-tab-content .tab-swiper-control {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: translateY(10%);
+  opacity: 0;
+  transition: transform 0.7s 0.3s, opacity 0.7s 0.3s;
+}
+
+.sec-tab-content .tab-swiper-control.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.sec-tab-content .tab-swiper-control .cont-title {
+  font-weight: bold;
+  font-size: clamp(1.6rem, 4.44vw, 4.8rem);
+  margin-bottom: 0.5rem;
+}
+
+.sec-tab-content .tab-swiper-control .sub-text {
+  font-size: clamp(1.3rem, 3.61vw, 2rem);
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+}
+
+.sec-tab-content .tab-swiper-control .paging-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  border-radius: 5rem;
+  width: 100%;
+  max-width: 16.3rem;
+  height: clamp(2.75rem, 7.64vw, 4.5rem);
+  padding: 0 clamp(0.9rem, 2.5vw, 3rem);
+  margin-top: 5.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.sec-tab-content .tab-swiper-control .paging-btn-group {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sec-tab-content .tab-swiper-control .paging-btn-group div {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.sec-tab-content .tab-swiper-control .paging-btn-group .swiper-prev {
+  left: 10%;
+}
+
+.sec-tab-content .tab-swiper-control .paging-btn-group .swiper-next {
+  right: 10%;
+}
+
+.sec-tab-content .tab-swiper-control .paging {
+  display: flex;
+  justify-content: center;
+  gap: 0 0.5rem;
+}
+
+.sec-tab-content .tab-swiper-control .paging > span {
+  font-size: clamp(1.2rem, 2.8vw, 1.8rem);
+  font-weight: bold;
+}
+
+.sec-tab-content .tab-swiper .swiper-slide {
+  position: relative;
+}
+
+.sec-tab-content .tab-swiper .swiper-slide .link-title {
+  position: absolute;
+  top: 3rem;
+  left: 4rem;
+  color: #fff;
+  font-weight: bold;
+  font-size: clamp(1.5rem, 4.17vw, 3.4rem);
+  text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.sec-tab-content .tab-swiper .swiper-slide img {
+  transition: transform 0.5s;
+}
+
+.sec-tab-content .tab-swiper .swiper-slide:hover img {
+  transform: scale(1.2);
+}
+
+/* sec-03, sec-04 공통 탭 컨텐츠 구현 끝 */
+/* sec-03, sec-04 공통 디자인 구현 끝 */
+/* sec-03 구현 시작 */
+.sec-03__pagination .swiper-pagination-bullet:nth-child(1)::after {
+  content: "먹고";
+}
+
+.sec-03__pagination .swiper-pagination-bullet:nth-child(2)::after {
+  content: "마시고";
+}
+
+.sec-03__pagination .swiper-pagination-bullet:nth-child(3)::after {
+  content: "즐기자";
+}
+/* sec-03 구현 끝 */
+
+/* sec-04 구현 시작 */
+.sec-04 {
+  transform: translateY(10%);
+  opacity: 0;
+  transition: transform 0.7s, opacity 0.7s;
+}
+
+.sec-04.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.sec-04__pagination .swiper-pagination-bullet:nth-child(1)::after {
+  content: "NEWS";
+}
+
+.sec-04__pagination .swiper-pagination-bullet:nth-child(2)::after {
+  content: "MAGAZINE";
+}
+
+.sec-04__tab-cont-wrap .tab-cont-wrap > div:first-child {
+  order: 1;
+}
+
+.sec-04__tab-cont-wrap .tab-cont-wrap > div:nth-child(3) {
+  order: 2;
+}
+
+.sec-04__tab-cont-wrap .tab-cont-wrap > div:nth-child(4) {
+  order: 3;
+}
+/* sec-04 구현 끝 */
+
+/* sec-05 구현 시작 */
+.sec-05 {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.7s, opacity 0.7s;
+}
+
+.sec-05.active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.sec-05 .grid-wrap {
+  grid-template-columns: 1fr 1fr;
+  gap: 0 2rem;
+}
+
+.sec-05 .grid-wrap .grid-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: clamp(1.25rem, 3.47vw, 2.5rem);
+}
+
+.sec-05 .link-title {
+  position: absolute;
+  top: 3rem;
+  left: 4rem;
+  color: #fff;
+  font-weight: bold;
+  font-size: clamp(1.5rem, 4.17vw, 3.4rem);
+  text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.sec-05 .grid-wrap .grid-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s;
+}
+
+.sec-05 .grid-wrap .grid-item .link-tit:hover > img {
+  transform: scale(1.1);
+}
+/* sec-05 구현 끝 */
+
+/* 화면의 너비가 1280px 이하일 때 */
+@media (1280px >= width) {
+  div[class*="__pagination"] .swiper-pagination-bullet::after {
+    font-size: 13.5rem;
+  }
+}
+
+/* 화면의 너비가 1025px 이하일 때 */
+@media (1025px > width) {
+  .sec-01 {
+    display: none;
+  }
+
+  .sec-02 .grid-wrap {
+    height: auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .sec-02 .grid-wrap .item-02 {
+    grid-area: 2 / 1;
+    grid-column-end: span 2;
+  }
+
+  .common-sec .sub-text .mo {
+    display: block;
+  }
+
+  .common-sec .grid-wrap {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2rem 0;
+  }
+
+  .sec-04 .grid-wrap .grid-item:first-child {
+    order: 2;
+  }
+
+  .sec-05 .grid-wrap {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2rem 0;
+  }
+}
+
+@media (1025px > width) {
+  .content-wrap {
+    padding: 0 2.4rem 2rem;
+  }
+}
+
+/* 화면의 너비가 560px 이하일 때 */
+@media (560px > width) {
+  div[class*="__pagination"] {
+    line-height: 9.5rem;
+  }
+
+  div[class*="__pagination"] .swiper-pagination-bullet::after {
+    font-size: 8.5rem;
+  }
+}
+/* 섹션 구현 끝 */
+
+/* 푸터 구현 시작 */
+.footer-bar {
+  background-color: #f5f5f5;
+  padding: 6rem 5.4rem;
+}
+
+.footer__cont-box-01 .cont {
+  height: 40em; /* 임시 */
+}
+
+.footer__cont-box-01 .cont-01 {
+  width: 35%;
+}
+
+.footer__cont-box-01 .cont-02 {
+  width: 50%;
+}
+
+.footer__cont-box-02 {
+  height: 10rem;
+  margin-top: 5rem;
+}
+
+.address {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.privacy > ul > li > a {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: bold;
+  padding: 0 15px;
+  position: relative;
+}
+
+.privacy > ul > li:not(:last-child) > a::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 12px;
+  background-color: #a0a0a0;
+}
+
+.privacy > ul > li:first-child > a,
+.privacy > ul > li:last-child > a {
+  padding-left: 0;
+}
+
+.footer__menu .depth1 {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2.4rem;
+}
+
+.footer__menu .depth2 {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 0.8rem;
+}
+
+.family-site-wrap > p {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.family-site-item {
+  position: relative;
+}
+
+.family-site-item .site-btn {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.family-site-item .site-btn::before,
+.family-site-item .site-btn::after {
+  display: block;
+  font-family: "fontAwesome";
+  font-size: 1.6rem;
+}
+
+.family-site-item .site-btn::before {
+  content: "\f068";
+  display: none;
+}
+
+.family-site-item .site-btn::after {
+  content: "\2b";
+}
+
+.family-site-item .site-btn.active::before {
+  display: block;
+}
+
+.family-site-item .site-btn.active::after {
+  display: none;
+}
+
+.copyright {
+  margin-top: 2.1rem;
+}
+
+.copyright .copyright-text {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.family-site-list {
+  position: absolute;
+  left: 0;
+  top: -500%;
+  border: 1px solid #e9e9e9;
+  background-color: #fff;
+  border-radius: 0.8rem;
+  padding: 1.4rem 0.5rem 1.4rem 3rem;
+}
+
+.family-site-list.active {
+  display: block;
+}
+
+.family-site-list > ul {
+  overflow-y: auto;
+  min-width: 22.6rem;
+  height: 16.1rem;
+}
+
+.family-site-list > ul > li > a {
+  display: block;
+  padding: 1.3rem 0;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  font-size: clamp(1.3rem, 3.61vw, 1.8rem);
+  transition: color 0.5s;
+}
+
+.family-site-list > ul > li:hover > a {
+  color: black;
+}
+
+.sns-list > ul > li > a {
+  display: block;
+  width: 6.8rem;
+  height: 6.8rem;
+  border-radius: 50%;
+  position: relative;
+}
+
+.sns-list > ul > li:hover .hover-img {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.sns-list .hover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+/* 화면의 너비가 1025px 이하일 때 */
+@media (1025px >= width) {
+  .footer__cont-box-01 .cont-01 {
+    width: 100%;
+  }
+
+  .footer__menu {
+    display: none;
+  }
+
+  .privacy {
+    width: 320px;
+  }
+}
+
+/* 화면의 너비가 768px 이하일 때 */
+@media (768px >= width) {
+  .footer-bar {
+    padding: 3rem 2.2rem;
+  }
+
+  .footer-wrap {
+    position: relative;
+  }
+
+  .cont-box-02__inner {
+    justify-content: flex-start !important;
+  }
+
+  .address .mo {
+    display: block;
+  }
+
+  .privacy > ul > li {
+    padding-top: 10px;
+  }
+
+  .family-site-wrap {
+    position: absolute;
+    right: 15px;
+    top: 36px;
+  }
+
+  .family-site-list {
+    left: -550% !important;
+  }
+
+  .copyright {
+    position: absolute;
+    top: 50%;
+    left: 0;
+  }
+}
+/* 푸터 구현 끝 */
